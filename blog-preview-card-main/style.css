@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
+
+:root {
+  --color-Yellow: hsl(47, 88%, 63%);
+  --color-White: hsl(0, 0%, 100%);
+  --color-Gray-light-500: hsl(0, 0%, 42%);
+  --color-Gray-dark-950: hsl(0, 0%, 7%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Figtree", sans-serif;
+  font-weight: 500;
+  min-height: 100dvh;
+  line-height: 1.5;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  background-color: var(--color-Yellow);
+  -webkit-font-smoothing: antialiased;
+  display: grid;
+  place-items: center;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+span {
+  display: block;
+}
+
+button {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+html {
+  font-size: 1rem;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+.container {
+  width: 100%;
+  min-width: 20.4375rem;
+  max-width: 21rem;
+  background-color: var(--color-White);
+  border: 1px solid var(--color-Gray-dark-950);
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 0px 3px var(--color-Gray-dark-950);
+  box-shadow: 5px 5px 0px 3px var(--color-Gray-dark-950);
+}
+
+.inner__container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding: 1.5rem;
+  /* padding: clamp(1rem, 3vw, 2rem); */
+}
+
+.inner__text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-width: 17.4375rem;
+}
+
+.inner__text-container button {
+  font-weight: 800;
+  border: none;
+  outline: none;
+  background-color: var(--color-Yellow);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.inner__text-container span {
+  font-size: 0.75rem;
+  color: var(--color-Gray-dark-950);
+}
+
+.inner__text-container h2 {
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--color-Gray-dark-950);
+  transition: 0.5s ease-in;
+}
+
+.inner__text-container h2:hover {
+  color: var(--color-Yellow);
+}
+
+.inner__text-container p {
+  color: var(--color-Gray-light-500);
+  font-size: 0.875rem;
+}
+
+.image__container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.aurthor__container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aurthor__container img {
+  width: 32px;
+}
+
+.aurthor__container h6 {
+  font-weight: 900;
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 400px) {
+  .container {
+    max-width: 80%;
+    margin: 1rem;
+  }
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
