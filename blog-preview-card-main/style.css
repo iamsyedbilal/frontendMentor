@@ -64,7 +64,7 @@ html {
 .container {
   width: 100%;
   min-width: 20.4375rem;
-  max-width: 21rem;
+  max-width: 23rem;
   background-color: var(--color-White);
   border: 1px solid var(--color-Gray-dark-950);
   border-radius: 20px;
@@ -147,12 +147,4 @@ html {
     max-width: 80%;
     margin: 1rem;
   }
-}
-
-.attribution {
-  font-size: 11px;
-  text-align: center;
-}
-.attribution a {
-  color: hsl(228, 45%, 44%);
 }
