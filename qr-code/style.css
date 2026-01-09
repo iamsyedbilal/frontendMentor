@@ -106,6 +106,20 @@ img {
   border: 0;
 }
 
+.visible-link {
+  color: #0366d6; /* Blue link color */
+  text-decoration: underline; /* Standard link styling */
+  outline-offset: 2px; /* Good focus ring spacing */
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.visible-link:focus-visible {
+  outline: 2px solid #0366d6;
+  outline-offset: 3px;
+}
+
 /* Responsive Enhancements */
 
 /* For larger screens - optional */
