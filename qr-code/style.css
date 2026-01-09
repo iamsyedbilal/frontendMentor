@@ -22,7 +22,7 @@
   box-sizing: border-box;
 }
 
-/* 2. Remove default margins */
+/* 2. Remove default margins and paddings */
 * {
   margin: 0;
   padding: 0;
@@ -40,47 +40,84 @@ body {
   font-size: var(--font-size-body);
   color: var(--color-slate-900);
   background-color: var(--color-slate-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* Prevent content touching edges on small devices */
 }
 
 /* 5. Media elements */
 img {
   display: block;
   max-width: 100%;
+  border-radius: 12px; /* Added here for consistency */
 }
 
+/* Container holding everything */
 .container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.inner__container {
-  width: 60%;
-  max-width: 320px;
+  width: 100%;
+  max-width: 360px; /* Slightly bigger max-width for mobile devices */
   background-color: var(--color-white);
   border-radius: 15px;
-  padding: 16px;
+  padding: 1.5rem 1.5rem 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
 }
 
-.img__container img {
-  width: 100%;
-  border-radius: 12px;
+/* Inner container with image and text */
+.inner__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
 }
 
+/* Text container */
 .text_container {
   text-align: center;
-  padding: 16px 8px 8px;
+  padding: 0 0.25rem;
 }
 
 .text_container h2 {
   font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
+  color: var(--color-slate-900);
+  line-height: 1.3;
 }
 
 .text_container p {
   font-size: 0.9375rem;
   color: var(--color-slate-500);
-  line-height: 1.4;
+  line-height: 1.5;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Screen-reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive Enhancements */
+
+/* For larger screens - optional */
+@media (min-width: 480px) {
+  .container {
+    max-width: 400px;
+    padding: 2rem;
+  }
+  .text_container h2 {
+    font-size: 1.5rem;
+  }
+  .text_container p {
+    font-size: 1rem;
+  }
 }
