@@ -74,15 +74,15 @@ p {
   margin: 0 32px;
 }
 
-.preparation__container h6 {
+.preparation__container h3 {
   font-family: var(--font-outfit);
   font-size: 20px;
   margin-bottom: 12px;
 }
 
-.ingredients__container h6,
-.instructions__container h6,
-.nutrition__container h6 {
+.ingredients__container h3,
+.instructions__container h3,
+.nutrition__container h3 {
   font-size: 28px;
   font-family: var(--font-young);
   font-weight: var(--font-weight-400);
@@ -90,7 +90,7 @@ p {
   padding-bottom: 24px;
 }
 
-.preparation__container h6 {
+.preparation__container h3 {
   color: var(--color-Rose-dark-800);
 }
 
@@ -157,7 +157,7 @@ p {
   border-bottom: 1px solid var(--color-Stone-light-150);
 }
 
-.nutrition-table td {
+.nutrition-table th {
   padding: 12px 0;
   font-family: var(--font-outfit);
   color: var(--color-Stone-medium-600);
@@ -183,7 +183,8 @@ p {
   }
   img {
     border-radius: 16px;
-    margin: 40px;
+    margin-inline: 40px;
+    margin-block-start: 40px;
     width: calc(100% - 80px);
   }
 
