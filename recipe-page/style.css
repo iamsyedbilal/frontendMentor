@@ -145,7 +145,7 @@ p {
 }
 
 .nutrition__container p {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .nutrition-table {
@@ -158,9 +158,16 @@ p {
 }
 
 .nutrition-table th {
-  padding: 12px 0;
+  text-align: start;
+  padding: 12px 12px 0 36px;
   font-family: var(--font-outfit);
   color: var(--color-Stone-medium-600);
+}
+
+.nutrition-table td {
+  padding: 12px 36px 0 12px;
+  font-weight: var(--font-weight-700);
+  color: var(--color-Brown-800);
 }
 
 .nutrition-table .value {
@@ -198,6 +205,13 @@ p {
 
   .line {
     width: calc(100% - 80px);
+  }
+  .nutrition-table th {
+    padding-left: 40px;
+  }
+
+  .nutrition-table td {
+    padding-right: 40px;
   }
 }
 
