@@ -44,6 +44,7 @@ html {
   font-size: 0.9375rem;
   font-weight: var(--fw-regular);
   color: var(--neutral-grey-400);
+  background-color: var(--clr-white);
 }
 
 /* 6. Improve media defaults */
@@ -97,7 +98,7 @@ span {
 
 .header {
   text-align: center;
-  margin-block: 4rem;
+  margin-block: 6rem;
 }
 
 .text__container {
