@@ -1,0 +1,481 @@
+:root {
+  --clr-cyan-600: #4d96a9;
+  --clr-cyan-300: #8fe3f9;
+  --clr-purple-600: #855fb1;
+  --clr-purple-300: #d9b8ff;
+  --clr-slate-900: #28283d;
+  --clr-slate-600: #87879d;
+  --clr-slate-300: #d1d1df;
+  --clr-white: #fafafa;
+
+  /* Font Weights */
+  --fw-medium: 500;
+  --fw-black: 900;
+
+  /* Font Sizes */
+  --fs-hero: 4rem;
+  --fs-heading: 2.5rem;
+  --fs-body: 1.125rem;
+  --fs-small: 1rem;
+
+  /* Line Heights */
+  --lh-tight: 1.1;
+  --lh-relaxed: 1.5;
+}
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 5. Improve text rendering */
+  font-family: "Red Hat Display", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-relaxed);
+  background-color: var(--clr-white);
+  color: var(--clr-slate-900);
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  font-weight: var(--fw-black);
+  border: none;
+  border-radius: 5rem;
+  font-size: var(--fs-small);
+  color: var(--clr-white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn--primary {
+  background-color: var(--clr-cyan-600);
+}
+
+.btn--primary:hover {
+  background-color: #71c0d4;
+}
+
+.btn--secondary {
+  background-color: var(--clr-purple-600);
+}
+
+.btn--secondary:hover {
+  background-color: #b18bdd;
+}
+
+.btn__span {
+  color: var(--clr-cyan-300);
+}
+
+.Logo {
+  width: 100%;
+  padding-block-start: 3rem;
+  padding-block-end: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* HERO SECTION - MOBILE FIRST */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: 3rem 4rem;
+  gap: 2.5rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.hero__image--left,
+.hero__image--right {
+  display: none;
+}
+
+.hero__image--center {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero__image--center img {
+  width: 110%;
+  margin-inline: auto;
+  /* margin-left: -5%; */
+}
+
+.hero__text--container {
+  max-width: 540px;
+  padding-inline: 1.5rem;
+  text-align: center;
+}
+
+.hero__text--container h1 {
+  font-size: 2.5rem;
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  margin-bottom: 1.5rem;
+}
+
+.hero__text--container p {
+  color: var(--clr-slate-600);
+  font-size: 1rem;
+  line-height: 1.625;
+  margin-bottom: 2rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TABLET */
+@media (min-width: 768px) {
+  .Logo {
+    padding-block-start: 3rem;
+  }
+
+  .hero {
+    padding-block: 4rem 5rem;
+  }
+
+  .hero__image--center img {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .hero__text--container {
+    padding-inline: 2rem;
+  }
+
+  .hero__text--container h1 {
+    font-size: 3rem;
+  }
+
+  .hero__text--container p {
+    font-size: var(--fs-body);
+  }
+
+  .hero__actions {
+    flex-direction: row;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1200px) {
+  .hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-block: 4rem;
+    padding-inline: 0;
+  }
+
+  .hero__image--center {
+    display: none;
+  }
+
+  .hero__image--left,
+  .hero__image--right {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .hero__image--left {
+    margin-left: -2rem;
+    max-width: 400px;
+  }
+
+  .hero__image--right {
+    margin-right: -2rem;
+    max-width: 400px;
+  }
+
+  .hero__text--container {
+    max-width: 540px;
+    padding-inline: 2rem;
+  }
+
+  .hero__text--container h1 {
+    font-size: var(--fs-hero);
+  }
+}
+
+/* BADGE SECTION */
+.badge__container--main {
+  display: flex;
+  justify-content: center;
+  padding-block: 3rem 4rem;
+}
+
+.badge-container {
+  width: 56px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.dotted-line {
+  width: 1px;
+  height: 84px;
+  background-color: var(--clr-slate-300);
+}
+
+.circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-slate-300);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-white);
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: var(--fw-black);
+  font-size: 1rem;
+  color: var(--clr-slate-600);
+}
+
+/* MAIN CONTENT SECTION */
+.main__content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-inline: 1.5rem;
+  padding-block: 0 4rem;
+  max-width: 1110px;
+  margin-inline: auto;
+}
+
+.main__content img {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+/* TABLET */
+@media (min-width: 768px) {
+  .badge__container--main {
+    padding-block: 4rem 5rem;
+  }
+
+  .main__content {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-inline: 2.5rem;
+  }
+
+  .main__content img {
+    border-radius: 0.5rem;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1200px) {
+  .main__content {
+    gap: 2rem;
+    padding-inline: 0;
+  }
+}
+
+.text {
+  text-align: center;
+  max-width: 650px;
+  margin-inline: auto;
+  padding: 0 1rem;
+}
+
+.text .smaller__heading {
+  font-size: 0.75rem;
+  color: var(--clr-cyan-600);
+  font-weight: var(--fw-black);
+  letter-spacing: 4px;
+  padding-block-end: 0.6rem;
+}
+
+.text h2 {
+  font-size: 3.5rem;
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  margin-bottom: 1rem;
+}
+
+.text .long__para {
+  color: var(--clr-slate-600);
+  font-weight: var(--fw-medium);
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+/* FOOTER BADGE */
+.badge__container--footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -2rem;
+  position: relative;
+  padding-block-start: 4rem;
+  z-index: 2;
+}
+
+/* FOOTER BASE */
+.footer {
+  position: relative;
+  background-image: url("./assets/mobile/image-footer.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: var(--clr-white);
+  padding: 5rem 1.5rem 1rem;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* TEAL OVERLAY */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(77, 150, 169, 0.9);
+  z-index: 0;
+}
+
+/* Ensure content is above overlay */
+.footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* FOOTER TEXT */
+.footer h2 {
+  font-size: 1.75rem;
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+}
+
+.footer p {
+  font-size: 1rem;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* BUTTON */
+.footer .btn {
+  background-color: var(--clr-purple-600);
+}
+
+.footer .btn:hover {
+  background-color: #b18bdd;
+}
+
+.footer .btn__span {
+  color: var(--clr-purple-300);
+}
+
+/* TABLET */
+@media (min-width: 768px) {
+  .footer {
+    background-image: url("./assets/tablet/image-footer.jpg");
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    padding: 5rem 3rem 4rem;
+    gap: 2rem;
+  }
+
+  .footer h2 {
+    font-size: 2.25rem;
+    max-width: 350px;
+  }
+
+  .footer p {
+    max-width: 400px;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1200px) {
+  .footer {
+    background-image: url("./assets/desktop/image-footer.jpg");
+    padding: 6rem 6rem 5rem;
+  }
+
+  .footer h2 {
+    font-size: 2rem;
+  }
+
+  .footer p {
+    max-width: 350px;
+  }
+}
