@@ -1,0 +1,246 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Bold.ttf");
+  font-weight: 700;
+}
+
+:root {
+  --clr-neutral-800: hsl(234, 29%, 20%);
+  --clr-neutral-700: hsl(235, 18%, 26%);
+  --clr-neutral-200: hsl(231, 7%, 60%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+
+  --clr-accent-400: hsl(4, 100%, 67%);
+  --clr-accent-500: hsl(347, 100%, 66%);
+
+  --ff-base: "Roboto", sans-serif;
+
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  --fs-300: 0.825rem;
+  --fs-400: 1rem;
+  --fs-900: 2.5rem;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body {
+  font-family: var(--ff-base);
+  font-size: var(--fs-400);
+  line-height: 1.5;
+  color: var(--clr-neutral-800);
+  background-color: var(--clr-neutral-100);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* LAYOUT */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 1rem; */
+}
+
+.sign-up-form {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--clr-neutral-100);
+}
+
+.content__wrapper {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TYPOGRAPHY */
+.title {
+  font-size: var(--fs-900);
+  font-weight: var(--fw-bold);
+  margin-bottom: 1rem;
+}
+
+.content__wrapper p {
+  color: var(--clr-neutral-700);
+  margin-bottom: 1.25rem;
+}
+
+/* FEATURE LIST */
+.features {
+  list-style: none;
+  margin-bottom: 2rem;
+  padding: 0;
+}
+
+.features li {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: var(--clr-neutral-700);
+}
+
+.features li::before {
+  content: "";
+  min-width: 21px;
+  height: 21px;
+  background-image: url("./assets/images/icon-list.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* FORM */
+.form__container {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+}
+
+.label__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__group input {
+  padding: 1rem;
+  font-size: var(--fs-400);
+  border-radius: 0.5rem;
+  border: 1px solid var(--clr-neutral-200);
+}
+
+.form__group input:focus {
+  outline: none;
+  border-color: var(--clr-neutral-700);
+}
+
+.form__group input::placeholder {
+  color: var(--clr-neutral-200);
+}
+
+button {
+  padding: 1rem;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  background-color: var(--clr-neutral-800);
+  color: var(--clr-neutral-100);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--clr-accent-500),
+    var(--clr-accent-400)
+  );
+  box-shadow: 0 10px 25px rgba(255, 98, 87, 0.4);
+}
+
+.form__group input.error-input {
+  border-color: var(--clr-accent-400);
+  background-color: hsl(4, 100%, 95%);
+  color: var(--clr-neutral-800);
+}
+
+.form__group input.error-input::placeholder {
+  color: var(--clr-accent-400);
+}
+
+.error {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--clr-accent-400);
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  body {
+    background-color: var(--clr-neutral-800);
+  }
+
+  .sign-up-form {
+    max-width: 920px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  picture {
+    order: 2;
+  }
+
+  .content__wrapper {
+    padding: 3rem;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 2.25rem;
+    line-height: 1.1;
+  }
+}
+
+.success-message {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--clr-neutral-100);
+  padding: 2.5rem 2rem;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.success-message img {
+  width: 64px;
+}
+
+.success-message h1 {
+  font-size: 2.25rem;
+  line-height: 1.1;
+}
+
+.success-message p {
+  color: var(--clr-neutral-700);
+}
+
+.dismiss-btn {
+  margin-top: 1rem;
+}
+
+.hidden {
+  display: none;
+}
