@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Report Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="avatar">
+            <img
+              src="./images/image-jeremy.png"
+              alt="Profile picture of Jeremy Robson" />
+          </div>
+          <div>
+            <p class="report-text">Report for</p>
+            <h1 class="name">Jeremy Robson</h1>
+          </div>
+        </div>
+
+        <div class="filters" role="navigation" aria-label="Timeframe selection">
+          <span class="daily" tabindex="0" role="button" aria-pressed="false"
+            >Daily</span
+          >
+          <span
+            class="active weekly"
+            tabindex="0"
+            role="button"
+            aria-pressed="true"
+            >Weekly</span
+          >
+          <span class="monthly" tabindex="0" role="button" aria-pressed="false"
+            >Monthly</span
+          >
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <section class="cards">
+        <article class="card-wrap work" aria-labelledby="work-title">
+          <img src="./images/icon-work.svg" alt="" aria-hidden="true" />
+          <div class="card">
+            <div class="card-header">
+              <span id="work-title">Work</span>
+              <span class="dots"
+                ><img
+                  src="./images/icon-ellipsis.svg"
+                  alt=""
+                  aria-hidden="true"
+              /></span>
+            </div>
+            <p class="hours">
+              <span class="sr-only">Current hours:</span> 32hrs
+            </p>
+            <p class="last-week">Last Week - 36hrs</p>
+          </div>
+        </article>
+
+        <article class="card-wrap play" aria-labelledby="play-title">
+          <img src="./images/icon-play.svg" alt="" aria-hidden="true" />
+          <div class="card">
+            <div class="card-header">
+              <span id="play-title">Play</span>
+              <span class="dots"
+                ><img
+                  src="./images/icon-ellipsis.svg"
+                  alt=""
+                  aria-hidden="true"
+              /></span>
+            </div>
+            <p class="hours">
+              <span class="sr-only">Current hours:</span> 10hrs
+            </p>
+            <p class="last-week">Last Week - 8hrs</p>
+          </div>
+        </article>
+
+        <article class="card-wrap study" aria-labelledby="study-title">
+          <img src="./images/icon-study.svg" alt="" aria-hidden="true" />
+          <div class="card">
+            <div class="card-header">
+              <span id="study-title">Study</span>
+              <span class="dots"
+                ><img
+                  src="./images/icon-ellipsis.svg"
+                  alt=""
+                  aria-hidden="true"
+              /></span>
+            </div>
+            <p class="hours">
+              <span class="sr-only">Current hours:</span> 4hrs
+            </p>
+            <p class="last-week">Last Week - 7hrs</p>
+          </div>
+        </article>
+
+        <article class="card-wrap exercise" aria-labelledby="exercise-title">
+          <img src="./images/icon-exercise.svg" alt="" aria-hidden="true" />
+          <div class="card">
+            <div class="card-header">
+              <span id="exercise-title">Exercise</span>
+              <span class="dots"
+                ><img
+                  src="./images/icon-ellipsis.svg"
+                  alt=""
+                  aria-hidden="true"
+              /></span>
+            </div>
+            <p class="hours">
+              <span class="sr-only">Current hours:</span> 4hrs
+            </p>
+            <p class="last-week">Last Week - 5hrs</p>
+          </div>
+        </article>
+
+        <article class="card-wrap social" aria-labelledby="social-title">
+          <img src="./images/icon-social.svg" alt="" aria-hidden="true" />
+          <div class="card">
+            <div class="card-header">
+              <span id="social-title">Social</span>
+              <span class="dots"
+                ><img
+                  src="./images/icon-ellipsis.svg"
+                  alt=""
+                  aria-hidden="true"
+              /></span>
+            </div>
+            <p class="hours">
+              <span class="sr-only">Current hours:</span> 5hrs
+            </p>
+            <p class="last-week">Last Week - 10hrs</p>
+          </div>
+        </article>
+
+        <article class="card-wrap selfcare" aria-labelledby="selfcare-title">
+          <img src="./images/icon-self-care.svg" alt="" aria-hidden="true" />
+          <div class="card">
+            <div class="card-header">
+              <span id="selfcare-title">Self Care</span>
+              <span class="dots"
+                ><img
+                  src="./images/icon-ellipsis.svg"
+                  alt=""
+                  aria-hidden="true"
+              /></span>
+            </div>
+            <p class="hours">
+              <span class="sr-only">Current hours:</span> 2hrs
+            </p>
+            <p class="last-week">Last Week - 2hrs</p>
+          </div>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
