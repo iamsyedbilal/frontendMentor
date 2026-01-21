@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((json) => (data = json))
     .catch((err) => console.log(`Something went wrong: ${err}`));
 
-  console.log(data);
+  // console.log(data);
 
   function updateUI(timeframe) {
     cards.forEach((card, index) => {
