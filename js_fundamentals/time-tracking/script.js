@@ -7,13 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let data = [];
 
-  fetch("/data.json")
+  fetch("./data.json")
     .then((res) => res.json())
-    .then((json) => {
-      data = json;
-      updateUI("weekly");
-    })
+    .then((json) => (data = json))
     .catch((err) => console.log(`Something went wrong: ${err}`));
+
+  console.log(data);
 
   function updateUI(timeframe) {
     cards.forEach((card, index) => {
