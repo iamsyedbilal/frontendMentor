@@ -1,0 +1,168 @@
+/* ------------------ */
+/* CSS RESET         */
+/* ------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Space Mono", monospace;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button {
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  margin-bottom: 0.75rem;
+}
+
+body {
+  background-color: #c5e4e7;
+  display: grid;
+  place-items: center;
+}
+
+.app-header {
+  margin-top: 3rem;
+}
+
+.calculator-card {
+  max-width: 375px;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  max-width: 920px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.calculator-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field span,
+legend {
+  color: #5e7a7d;
+  font-size: 0.9rem;
+}
+
+input {
+  background: #f3f9fa;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  text-align: right;
+  font-weight: 700;
+  color: #00494d;
+}
+
+.tip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.tip-grid button {
+  background: #00494d;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+
+.tip-grid input {
+  text-align: center;
+}
+
+.tip-grid button,
+.tip-grid input {
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.calculator-results {
+  background: #00494d;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result p {
+  color: #fff;
+  font-weight: 700;
+}
+
+.result span {
+  color: #7f9c9f;
+  font-size: 0.8rem;
+}
+
+output {
+  color: #26c0ab;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.reset-btn {
+  margin-top: auto;
+  background: #26c0ab;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  color: #00494d;
+}
