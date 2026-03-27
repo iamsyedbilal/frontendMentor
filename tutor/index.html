@@ -44,27 +44,27 @@
     <!-- 
       Navigation Bar
     -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-flex container">
-        <img src="./images/logo.svg" alt="Tutor Logo" />
+        <a href="/" aria-label="Logo Home Link"><img src="./images/logo.svg" alt="Tutor Logo" /></a>
         <!-- 
           Desktop Menu Items
         -->
         <div class="main-menu-items">
           <ul class="main-menu-list">
-            <li class="menu-items"><a href="#home">Home</a></li>
+            <li class="menu-items"><a href="/">Home</a></li>
             <li class="menu-items"><a href="#chapters">Chapters</a></li>
             <li class="menu-items"><a href="#summary">Summary</a></li>
             <li class="menu-items"><a href="#takeaways">Takeaways</a></li>
             <li class="menu-items"><a href="#author">Author</a></li>
-            <li class="menu-items"><a href="/contact.html">Contact</a></li>
+            <li class="menu-items"><a href="./contact.html">Contact</a></li>
             <li class="menu-items">
-              <a href="www.facebook.com" target="_blank"
+              <a href="www.facebook.com" target="_blank" aria-label="Follow Us on Facebook"
                 ><i class="fa-brands fa-facebook"></i
               ></a>
             </li>
             <li class="menu-items">
-              <a href="www.twitter.com" target="_blank"
+              <a href="www.twitter.com" target="_blank" aria-label="Follow Us on twitter"
                 ><i class="fa-brands fa-twitter"></i
               ></a>
             </li>
@@ -74,24 +74,26 @@
           Mobile Menu Icon
         -->
         <div class="mobile-menu">
-          <div class="mobile-menu-toggle">
+          <div class="mobile-menu-toggle" role="button" aria-expanded="false" aria-controls="mobile-menu-items" aria-label="open mobile menu" tabindex="0">
             <i class="fa-solid fa-bars fa-2x"></i>
           </div>
-          <div class="mobile-menu-items">
+          <div class="mobile-menu-items" id="mobile-menu-items">
             <ul class="mobile-menu-list">
-              <li class="menu-items"><a href="#home">Home</a></li>
+              <li class="menu-items"><a href="./index.html">Home</a></li>
               <li class="menu-items"><a href="#chapters">Chapters</a></li>
               <li class="menu-items"><a href="#summary">Summary</a></li>
               <li class="menu-items"><a href="#takeaways">Takeaways</a></li>
               <li class="menu-items"><a href="#author">Author</a></li>
-              <li class="menu-items"><a href="/contact.html">Contact</a></li>
+              <li class="menu-items"><a href="./contact.html">Contact</a></li>
               <li class="menu-items">
                 <a href="www.facebook.com" target="_blank"
+                aria-label="Follow Us on Facebook"
                   ><i class="fa-brands fa-facebook"></i
                 ></a>
               </li>
               <li class="menu-items">
                 <a href="www.twitter.com" target="_blank"
+                aria-label="Follow Us on twitter"
                   ><i class="fa-brands fa-twitter"></i
                 ></a>
               </li>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,29 +11,62 @@
       sizes="32x32"
       href="./images/favicon-32x32.png" />
 
+    <!-- 
+        Google Fonts
+      -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet" />
+
+    <!-- 
+      Custom CSS
+      -->
+    <link rel="stylesheet" href="/css/style.css" />
+
     <title>Frontend Mentor | QR code component</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
   </head>
   <body>
-    <main class="container">
-      <h1 class="sr-only">Frontend Mentor QR Code</h1>
-      <div class="inner__container">
-        <div class="img__container">
-          <img
-            src="./images/image-qr-code.png"
-            alt="QR code linking to Frontend Mentor website" />
-        </div>
-        <div class="text_container">
-          <h2>Improve your front-end skills by building projects</h2>
-          <p>
+    <main>
+      <p class="sr-only">Frontend Mentor QR Code</p>
+      <article class="qr-card">
+        <img
+          class="qr-card__image"
+          src="./images/image-qr-code.png"
+          alt="QR code to visit Frontend Mentor" />
+
+        <div class="qr-card__content">
+          <h1 class="qr-card__title">
+            Improve your front-end skills by building projects
+          </h1>
+          <p class="qr-card__description">
             Scan the QR code to visit Frontend Mentor and take your coding
             skills to the next level
           </p>
-          <a href="https://frontendmentor.io" class="visible-link"
-            >Visit Frontend Mentor website</a
-          >
         </div>
-      </div>
+      </article>
     </main>
+
+    <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Frontend Mentor</a
+      >. Coded by <a href="https://github.com/iamsyedbilal">Syed Bilal</a>.
+    </div>
   </body>
 </html>
