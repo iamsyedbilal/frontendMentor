@@ -165,4 +165,63 @@ output {
   border-radius: 0.5rem;
   font-weight: 700;
   color: #00494d;
+  outline: none;
+  border: none;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-message {
+  display: none;
+  color: #e17052;
+  font-size: 0.8rem;
+}
+
+.people-field.error .error-message {
+  display: block;
+  color: #e17052;
+}
+
+.people-field.error input {
+  outline: 2px solid #e17052;
+}
+
+.span_div {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Active tip button style */
+.tip-grid button.active {
+  background-color: hsl(172, 67%, 45%);
+  color: white;
+}
+
+/* Custom tip input when active (focused or has value) */
+.tip-grid input.active {
+  outline: 2px solid hsl(172, 67%, 45%);
+  color: hsl(172, 67%, 45%);
+  font-weight: 700;
+}
+
+input.active {
+  outline: 2px solid hsl(172, 67%, 45%);
+  color: hsl(172, 67%, 45%);
+  font-weight: 700;
+}
+
+/* 
+  Media Queries
+*/
+
+@media (max-width: 768px) {
+  .calculator-card {
+    grid-template-columns: 1fr;
+  }
+  .app-header {
+    margin-bottom: 2rem;
+  }
 }

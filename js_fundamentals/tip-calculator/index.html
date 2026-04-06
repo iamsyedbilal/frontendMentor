@@ -23,7 +23,12 @@
         <section class="calculator-inputs">
           <label class="field">
             <span>Bill</span>
-            <input type="number" placeholder="0" min="0" step="0.01" />
+            <input
+              type="number"
+              placeholder="0"
+              min="0"
+              step="0.01"
+              id="billInput" />
           </label>
 
           <fieldset class="tip-options">
@@ -39,9 +44,12 @@
             </div>
           </fieldset>
 
-          <label class="field">
-            <span>Number of People</span>
-            <input type="number" placeholder="0" min="1" />
+          <label class="field people-field">
+            <div class="span_div">
+              <span>Number of People</span>
+              <span class="error-message">Can't be zero</span>
+            </div>
+            <input type="number" placeholder="0" min="1" id="peopleInput" />
           </label>
         </section>
 
@@ -52,7 +60,7 @@
               <p>Tip Amount</p>
               <span>/ person</span>
             </div>
-            <output>$0.00</output>
+            <output class="amount-price-sum">$0.00</output>
           </div>
 
           <div class="result">
@@ -60,12 +68,14 @@
               <p>Total</p>
               <span>/ person</span>
             </div>
-            <output>$0.00</output>
+            <output class="total-price-sum">$0.00</output>
           </div>
 
           <button type="reset" class="reset-btn">RESET</button>
         </section>
       </form>
     </main>
+
+    <script src="./script.js"></script>
   </body>
 </html>
