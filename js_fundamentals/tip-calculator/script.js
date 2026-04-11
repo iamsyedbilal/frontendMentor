@@ -24,7 +24,7 @@ function calculate() {
 
   const tipAmount = bill * tipPercentage;
   const tipPerPerson = tipAmount / people;
-  const totalPerPerson = bill + tipAmount / people;
+  const totalPerPerson = (bill + tipAmount) / people;
 
   tipOutput.textContent = `$${tipPerPerson.toFixed(2)}`;
   totalOutput.textContent = `$${totalPerPerson.toFixed(2)}`;
@@ -45,7 +45,7 @@ customTipInput.addEventListener("input", () => {
   tipButtons.forEach((btn) => btn.classList.remove("active"));
   if (customTipInput.value) {
     customTipInput.classList.add("active");
-    parseFloat(customTipInput.value) / 100;
+    tipPercentage = parseFloat(customTipInput.value) / 100;
   } else {
     customTipInput.classList.remove("active");
     tipPercentage = 0;
@@ -63,7 +63,7 @@ function toggleActiveClass(input) {
 
 billInput.addEventListener("input", () => {
   toggleActiveClass(billInput);
-  // calculate();
+  calculate();
 });
 billInput.addEventListener("focus", () => {
   billInput.classList.add("active");
