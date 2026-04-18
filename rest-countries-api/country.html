@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 
+      Google Fonts
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet" />
+
+    <!-- 
+        Icons
+      -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7/dist/ionicons/ionicons.esm.js"></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7/dist/ionicons/ionicons.js"></script>
+
+    <!-- 
+      Custom CSS
+    -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Country Details</title>
+  </head>
+  <body>
+    <!-- 
+      Header
+    -->
+
+    <header class="header" role="banner">
+      <nav class="nav" role="navigation">
+        <a href="/" class="logo">
+          <h1>Where in the World?</h1>
+        </a>
+
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode">
+          <ion-icon name="moon-outline" id="theme-icon"></ion-icon>
+          <span>Dark Mode</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- 
+      Country Details
+    -->
+    <main role="navigation">
+      <section class="back__btn">
+        <a href="/" class="btn">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          Back
+        </a>
+      </section>
+
+      <section class="details" role="region" aria-label="Country details">
+        <div class="details__container" id="country-details"></div>
+      </section>
+    </main>
+
+    <!-- 
+      Custom JS
+    -->
+    <script src="./js/country.js"></script>
+    <script src="./js/theme.js"></script>
+  </body>
+</html>

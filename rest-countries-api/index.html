@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 
+      Google Fonts
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet" />
+
+    <!-- 
+        Icons
+      -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7/dist/ionicons/ionicons.esm.js"></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7/dist/ionicons/ionicons.js"></script>
+
+    <!-- 
+        Custom CSS
+      -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Rest Countries</title>
+  </head>
+  <body>
+    <!-- 
+      Header
+    -->
+
+    <header class="header" role="banner">
+      <nav class="nav" role="navigation">
+        <a href="/" class="logo">
+          <h1>Where in the World?</h1>
+        </a>
+
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode">
+          <ion-icon name="moon-outline" id="theme-icon"></ion-icon>
+          <span>Dark Mode</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- 
+      Main
+    -->
+    <main id="main" role="main">
+      <section class="section__search">
+        <div class="search">
+          <ion-icon name="search" class="search__icon"></ion-icon>
+          <input
+            type="text"
+            placeholder="Search for a country..."
+            class="input" />
+        </div>
+        <div class="region">
+          <select name="region" id="region" class="region__select">
+            <option value="">Filter by Region</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">Americas</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- 
+        Countries Container
+      -->
+      <section class="countries" aria-live="polite">
+        <div class="countries__grid" id="countries"></div>
+      </section>
+    </main>
+
+    <!-- 
+      Custom JS
+    -->
+    <script src="./js/script.js"></script>
+    <script src="./js/theme.js"></script>
+  </body>
+</html>
