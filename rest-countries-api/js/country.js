@@ -4,7 +4,7 @@ const params = new URLSearchParams(window.location.search);
 const countryCode = params.get("code");
 
 async function loadCountry() {
-  const res = await fetch("/data.json");
+  const res = await fetch("./data.json");
   const countries = await res.json();
 
   const country = countries.find((c) => c.alpha3Code === countryCode);

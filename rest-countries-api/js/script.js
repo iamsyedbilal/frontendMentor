@@ -6,8 +6,9 @@ let allCountries = [];
 
 async function getCountries() {
   try {
-    const response = await fetch("/data.json");
+    const response = await fetch("./data.json");
     const countries = await response.json();
+    console.log(countries);
     allCountries = countries;
     renderCountry(countries);
   } catch (error) {
