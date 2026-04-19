@@ -1,0 +1,217 @@
+/* 
+  SPACING SYSTEM (px)
+  2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+  FONT SIZE SYSTEM (px)
+  10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+
+/* ============================================================
+   CUSTOM PROPERTIES
+   ============================================================ */
+:root {
+  /* COLORS */
+  --clr-green-500: hsl(171, 66%, 44%);
+  --clr-blue-100: hsl(233, 100%, 69%);
+  --clr-gray-700: hsl(210, 10%, 33%);
+  --clr-gray-500: hsl(201, 11%, 66%);
+
+  /* TYPOGRAPHY */
+  --fw-400: 400;
+  --fw-600: 600;
+  --ff-bai: "Bai Jamjuree", sans-serif;
+}
+
+/* ============================================================
+  RESET
+  ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[role="list"],
+ol[role="list"],
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================================================
+  BASE
+  ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--ff-bai);
+  font-weight: var(--fw-400);
+  color: var(--clr-gray-700);
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--fw-600);
+}
+
+p {
+  color: var(--clr-gray-500);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 
+    LAYOUT SYSTEM
+  */
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 2.4rem;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn {
+  display: inline-block;
+  font-weight: var(--fw-600);
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Primary (iOS - Green) */
+.btn--green {
+  background-color: var(--clr-green-500);
+  color: #fff;
+  box-shadow: 0 10px 20px hsla(171, 66%, 44%, 0.3);
+}
+
+.btn--green:hover {
+  background-color: hsl(171, 66%, 38%);
+  transform: translateY(-2px);
+}
+
+/* Secondary (Mac - Blue) */
+.btn--blue {
+  background-color: var(--clr-blue-100);
+  color: #fff;
+  box-shadow: 0 10px 20px hsla(233, 100%, 69%, 0.3);
+}
+
+.btn--blue:hover {
+  background-color: hsl(233, 100%, 63%);
+  transform: translateY(-2px);
+}
+
+/* Optional: full width for mobile */
+.btn--block {
+  width: 100%;
+  text-align: center;
+}
+
+/* 
+  HEADER
+*/
+.header {
+  background-image: url(../images/bg-header-desktop.png);
+  background-position: center;
+  background-size: cover;
+  padding: 6rem 0 8rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  max-width: 90px;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.header__content {
+  text-align: center;
+}
+
+.header__content h1 {
+  font-weight: var(--fw-600);
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
+
+.header__content p {
+  max-width: 550px;
+  padding-top: 0.5rem;
+  margin: 0 auto;
+}
+
+.header__btn {
+  padding-top: 1.2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
