@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syed Bilal — Frontend Mentor Challenges</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0a0a0f;
+        --surface: #111118;
+        --surface2: #1a1a24;
+        --border: rgba(255, 255, 255, 0.07);
+        --border-hover: rgba(99, 102, 241, 0.5);
+        --accent: #6366f1;
+        --accent2: #a78bfa;
+        --text: #f0f0f8;
+        --muted: #6b6b80;
+        --muted2: #9494a8;
+        --newbie: #34d399;
+        --junior: #60a5fa;
+        --intermediate: #f472b6;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── noise overlay ── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
+
+      /* ── glow blobs ── */
+      .blob {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.12;
+      }
+      .blob-1 {
+        width: 600px;
+        height: 600px;
+        background: var(--accent);
+        top: -200px;
+        left: -200px;
+      }
+      .blob-2 {
+        width: 500px;
+        height: 500px;
+        background: var(--accent2);
+        bottom: -150px;
+        right: -100px;
+      }
+
+      /* ── header ── */
+      header {
+        position: relative;
+        z-index: 10;
+        padding: 80px 40px 60px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .header-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent2);
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 28px;
+        white-space: nowrap;
+      }
+
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent2);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      h1 {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.7rem, 6vw, 4rem);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 20px;
+      }
+
+      h1 span {
+        background: linear-gradient(
+          135deg,
+          var(--accent) 0%,
+          var(--accent2) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .subtitle {
+        font-size: 1.05rem;
+        color: var(--muted2);
+        line-height: 1.7;
+        max-width: 520px;
+        margin-bottom: 36px;
+        font-weight: 300;
+      }
+
+      .stats-row {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ── filter bar ── */
+      .filter-bar {
+        position: relative;
+        z-index: 10;
+        max-width: 1100px;
+        margin: 0 auto 40px;
+        padding: 0 40px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .filter-btn {
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px 18px;
+        border-radius: 100px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--muted2);
+        cursor: pointer;
+        transition: all 0.2s;
+        letter-spacing: 0.02em;
+      }
+
+      .filter-btn:hover {
+        border-color: rgba(99, 102, 241, 0.4);
+        color: var(--text);
+      }
+      .filter-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      /* ── grid ── */
+      .grid {
+        position: relative;
+        z-index: 10;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 40px 100px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      /* ── card ── */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.5s ease forwards;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: var(--border-hover);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.12);
+      }
+
+      /* ── preview area ── */
+      .card-preview {
+        height: 180px;
+        position: relative;
+        overflow: hidden;
+        background: var(--surface2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card-preview iframe {
+        width: 200%;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: top left;
+        border: none;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .preview-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 40%,
+          var(--surface) 100%
+        );
+        z-index: 2;
+      }
+
+      .preview-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+      }
+
+      .preview-placeholder svg {
+        opacity: 0.4;
+      }
+      .preview-placeholder span {
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ── card body ── */
+      .card-body {
+        padding: 20px 22px 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .card-title {
+        font-family: "Syne", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--text);
+      }
+
+      .badge {
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 100px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .badge-newbie {
+        background: rgba(52, 211, 153, 0.1);
+        color: var(--newbie);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+      }
+      .badge-junior {
+        background: rgba(96, 165, 250, 0.1);
+        color: var(--junior);
+        border: 1px solid rgba(96, 165, 250, 0.2);
+      }
+      .badge-intermediate {
+        background: rgba(244, 114, 182, 0.1);
+        color: var(--intermediate);
+        border: 1px solid rgba(244, 114, 182, 0.2);
+      }
+
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tag {
+        font-size: 11px;
+        color: var(--muted);
+        background: var(--surface2);
+        padding: 3px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+      }
+
+      .card-footer {
+        display: flex;
+        gap: 10px;
+        margin-top: auto;
+        padding-top: 6px;
+      }
+
+      .btn-live,
+      .btn-code {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 9px 14px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: all 0.2s;
+        letter-spacing: 0.02em;
+      }
+
+      .btn-live {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-live:hover {
+        background: #4f46e5;
+      }
+
+      .btn-code {
+        background: var(--surface2);
+        color: var(--muted2);
+        border: 1px solid var(--border);
+      }
+      .btn-code:hover {
+        border-color: rgba(99, 102, 241, 0.4);
+        color: var(--text);
+      }
+
+      /* ── hidden card ── */
+      .card.hidden {
+        display: none;
+      }
+
+      /* ── footer ── */
+      footer {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 40px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      footer a {
+        color: var(--accent2);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── responsive ── */
+      @media (max-width: 600px) {
+        header,
+        .filter-bar,
+        .grid {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        header {
+          padding-top: 40px;
+          padding-bottom: 32px;
+        }
+        .stats-row {
+          gap: 20px;
+        }
+        .subtitle {
+          font-size: 0.95rem;
+        }
+        .stat-num {
+          font-size: 1.3rem;
+        }
+        .blob-1 {
+          width: 300px;
+          height: 300px;
+        }
+        .blob-2 {
+          width: 250px;
+          height: 250px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .card-top {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <header>
+      <div class="header-tag">
+        <span class="dot"></span>
+        Frontend Mentor Challenges
+      </div>
+      <h1>
+        Crafting <span>pixel&#8209;perfect</span> interfaces, one challenge at a
+        time.
+      </h1>
+      <p class="subtitle">
+        A collection of Frontend Mentor challenge solutions by Syed Bilal —
+        built with HTML, CSS, and JavaScript. 395+ points and counting.
+      </p>
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num" id="total-count">17+</span>
+          <span class="stat-label">Challenges</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">395+</span>
+          <span class="stat-label">Points</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Levels</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filter('all', this)">
+        All
+      </button>
+      <button class="filter-btn" onclick="filter('newbie', this)">
+        Newbie
+      </button>
+      <button class="filter-btn" onclick="filter('junior', this)">
+        Junior
+      </button>
+      <button class="filter-btn" onclick="filter('intermediate', this)">
+        Intermediate
+      </button>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- REST Countries API -->
+      <div
+        class="card"
+        data-level="intermediate"
+        style="animation-delay: 0.05s">
+        <div class="card-preview">
+          <img
+            src="screenshots/countries.png"
+            alt="REST Countries API preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">REST Countries API</span>
+            <span class="badge badge-intermediate">Intermediate</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">API Fetch</span>
+            <span class="tag">Dark Mode</span>
+            <span class="tag">Search</span>
+            <span class="tag">Filter</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/rest-countries-api/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/rest-countries-api"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fylo Dark -->
+      <div class="card" data-level="junior" style="animation-delay: 0.1s">
+        <div class="card-preview">
+          <img
+            src="screenshots/Fylo.png"
+            alt="Fylo Dark Theme Landing Page preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Fylo Dark Theme Landing Page</span>
+            <span class="badge badge-junior">Junior</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">Dark Theme</span>
+            <span class="tag">CSS Grid</span>
+            <span class="tag">Flexbox</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/fylo-dark-theme-landing-page/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/fylo-dark-theme-landing-page"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clipboard Landing -->
+      <div class="card" data-level="junior" style="animation-delay: 0.15s">
+        <div class="card-preview">
+          <img
+            src="screenshots/clipboard-landing.png"
+            alt="Clipboard Landing Page preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Clipboard Landing Page</span>
+            <span class="badge badge-junior">Junior</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">Flexbox</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/clipboard-landing-pag/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/clipboard-landing-pag"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meet Landing Page -->
+      <div class="card" data-level="junior" style="animation-delay: 0.2s">
+        <div class="card-preview">
+          <img
+            src="screenshots/meet-landing-page.png"
+            alt="Meet Landing Page preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Meet Landing Page</span>
+            <span class="badge badge-junior">Junior</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">CSS Grid</span>
+            <span class="tag">Responsive</span>
+            <span class="tag">Layout</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/layout/meet-landing-page/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/layout/meet-landing-page"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip Calculator -->
+      <div class="card" data-level="junior" style="animation-delay: 0.25s">
+        <div class="card-preview">
+          <img
+            src="screenshots/tipcalculator.png"
+            alt="Tip Calculator App preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Tip Calculator App</span>
+            <span class="badge badge-junior">Junior</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">DOM</span>
+            <span class="tag">Forms</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/js_fundamentals/tip-calculator/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/js_fundamentals/tip-calculator"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time Tracking -->
+      <div class="card" data-level="junior" style="animation-delay: 0.3s">
+        <div class="card-preview">
+          <img
+            src="screenshots/time-tracking.png"
+            alt="Time Tracking Dashboard preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Time Tracking Dashboard</span>
+            <span class="badge badge-junior">Junior</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">JSON Data</span>
+            <span class="tag">DOM</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/js_fundamentals/time-tracking/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/js_fundamentals/time-tracking"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="card" data-level="junior" style="animation-delay: 0.35s">
+        <div class="card-preview">
+          <img
+            src="screenshots/newsletter.png"
+            alt="Newsletter Sign-Up preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Newsletter Sign-Up</span>
+            <span class="badge badge-junior">Junior</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Form Validation</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/js_fundamentals/newsletter-sign-up/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/js_fundamentals/newsletter-sign-up"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.4s">
+        <div class="card-preview">
+          <img
+            src="screenshots/grid.png"
+            alt="Testimonials Grid preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Testimonials Grid Section</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">CSS Grid</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/layout/testimonials-grid/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/layout/testimonials-grid"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Preview Card -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.45s">
+        <div class="card-preview">
+          <img
+            src="screenshots/blog-preview.png"
+            alt="Blog Preview Card preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Blog Preview Card</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/blog-preview-card-main/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/blog-preview-card-main"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- QR Code -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.5s">
+        <div class="card-preview">
+          <img
+            src="screenshots/qr-code.png"
+            alt="QR Code Component preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">QR Code Component</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/qr-code/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/qr-code"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe Page -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.55s">
+        <div class="card-preview">
+          <img
+            src="screenshots/recipe.png"
+            alt="Recipe Page preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Recipe Page</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Typography</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/recipe-page/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/recipe-page"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article Preview -->
+      <div class="card" data-level="junior" style="animation-delay: 0.6s">
+        <div class="card-preview">
+          <img
+            src="screenshots/article.png"
+            alt="Article Preview preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Article Preview Component</span>
+            <span class="badge badge-junior">Junior</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Share UI</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/js_fundamentals/article-preview/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/js_fundamentals/article-preview"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Four Card Feature Section -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.65s">
+        <div class="card-preview">
+          <img
+            src="screenshots/four-season.png"
+            alt="Four Card Feature Section preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Four Card Feature Section</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">CSS Grid</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/layout/four-card-feature-section-master/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/layout/four-card-feature-section-master"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Huddle Landing Page -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.7s">
+        <div class="card-preview">
+          <img
+            src="screenshots/huddle.png"
+            alt="Huddle Landing Page preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Huddle Landing Page</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">Flexbox</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/huddle-landing-page-with-single-introductory-section-master/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/huddle-landing-page-with-single-introductory-section-master"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ping Coming Soon -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.75s">
+        <div class="card-preview">
+          <img
+            src="screenshots/ping.png"
+            alt="Ping Coming Soon preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Ping Coming Soon Page</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Form Validation</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/ping-coming-soon/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/ping-coming-soon"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Preview Card -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.8s">
+        <div class="card-preview">
+          <img
+            src="screenshots/product.png"
+            alt="Product Preview Card preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Product Preview Card</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/layout/product-preview-card-component/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/layout/product-preview-card-component"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Links Profile -->
+      <div class="card" data-level="newbie" style="animation-delay: 0.85s">
+        <div class="card-preview">
+          <img
+            src="screenshots/profile.png"
+            alt="Social Links Profile preview"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            " />
+          <div class="preview-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">Social Links Profile</span>
+            <span class="badge badge-newbie">Newbie</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="btn-live"
+              href="https://iamsyedbilal.github.io/frontendMentor/social-links-profile/"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+            <a
+              class="btn-code"
+              href="https://github.com/iamsyedbilal/frontendMentor/tree/main/social-links-profile"
+              target="_blank">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Built by
+        <a href="https://github.com/iamsyedbilal" target="_blank">Syed Bilal</a>
+        · Challenges from
+        <a
+          href="https://www.frontendmentor.io/profile/iamsyewdbilal"
+          target="_blank"
+          >Frontend Mentor</a
+        >
+      </p>
+    </footer>
+
+    <script>
+      function filter(level, btn) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".card").forEach((card, i) => {
+          const show = level === "all" || card.dataset.level === level;
+          card.classList.toggle("hidden", !show);
+          if (show) card.style.animationDelay = i * 0.05 + "s";
+        });
+      }
+    </script>
+  </body>
+</html>
