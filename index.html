@@ -31,6 +31,7 @@
         --newbie: #34d399;
         --junior: #60a5fa;
         --intermediate: #f472b6;
+        --advance: #f43f5e;
       }
 
       html {
@@ -360,6 +361,11 @@
         color: var(--intermediate);
         border: 1px solid rgba(244, 114, 182, 0.2);
       }
+      .badge-advance {
+        background: rgba(244, 63, 94, 0.1);
+        color: var(--advance);
+        border: 1px solid rgba(244, 63, 94, 0.2);
+      }
 
       .card-tags {
         display: flex;
@@ -528,14 +534,14 @@
       <button class="filter-btn" onclick="filter('intermediate', this)">
         Intermediate
       </button>
+      <button class="filter-btn" onclick="filter('advance', this)">
+        Advance
+      </button>
     </div>
 
     <div class="grid" id="grid">
       <!-- REST Countries API -->
-      <div
-        class="card"
-        data-level="intermediate"
-        style="animation-delay: 0.05s">
+      <div class="card" data-level="advance" style="animation-delay: 0.05s">
         <div class="card-preview">
           <img
             src="screenshots/countries.png"
@@ -551,7 +557,7 @@
         <div class="card-body">
           <div class="card-top">
             <span class="card-title">REST Countries API</span>
-            <span class="badge badge-intermediate">Intermediate</span>
+            <span class="badge badge-advance">Advance</span>
           </div>
           <div class="card-tags">
             <span class="tag">API Fetch</span>
